@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   lint-app:
     docker:
-      - image: circleci/node:16
+      - image: circleci/node:16.20.1
     steps:
       - checkout
   build-docker:
@@ -14,12 +14,11 @@ jobs:
           name: Build docker container for each microservices
           command: |
             echo "--------- Installing dependencies-----------"
-            sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
-            sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
-            sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
-            node --version => v18.0.0
+            sudo curl -LO https://nodejs.org/dist/v16.20.1/node-v16.20.1-linux-x64.tar.xz
+            sudo tar -xvf node-v16.20.1-linux-x64.tar.xz
+            sudo cp -r node-v16.20.1-linux-x64/{bin,include,lib,share} /usr/
+            node --version => v16.20.1
             sudo apt install nodejs
-            sudo apt-get update
 
             echo "--------- The images is Building ------------"
 
