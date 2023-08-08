@@ -13,7 +13,6 @@ jobs:
       - run:
           name: Build docker container for each microservices
           command: |
-            echo $DOCKER_USERNAME
             echo "--------- Installing dependencies-----------"
             sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
             sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
