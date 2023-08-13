@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  POSTGRES_USERNAME: nguyent4
+  POSTGRES_PASSWORD: nguyent4
+  POSTGRES_HOST: my-db.c2bdjoqhzlwx.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: nguyent4
+  AWS_BUCKET: test-nguyent4-dev
+  AWS_REGION: us-east-1
+  AWS_PROFILE: default
+  JWT_SECRET: testing
+  URL: http://localhost:8100
