@@ -1,39 +1,93 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-feed
+  name: api-feed
 spec:
   selector:
     matchLabels:
-      run: backend-feed
+      run: api-feed
   replicas: 2
   template:
     metadata:
       labels:
-        run: backend-feed
+        run: api-feed
     spec:
       containers:
-      - name: backend-feed
-        image: nguyent4/udagram-api-feed:v1
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 200m
+        - name: api-feed
+          image: nguyent4/udagram-api-feed:v1
+          env:
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_HOST
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_DB
+            - name: AWS_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_BUCKET
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_REGION
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_PROFILE
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: JWT_SECRET
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: URL
+          volumeMounts:
+            - name: nguyent4-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+      volumes:
+        - name: nguyent4-secret
+          secret:
+            secretName: nguyent4-secret
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: backend-feed
-  name: backend-feed
+    service: api-feed
+  name: api-feed
 spec:
   ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 8080
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
   selector:
-    service: backend-feed
+    run: api-feed
