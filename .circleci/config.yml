@@ -43,7 +43,7 @@ jobs:
 
             docker push nguyent4/udagram-api-feed:v1
             docker push nguyent4/udagram-api-user:v1
-            docker push nguyent4/udagram-frontend:local
+            docker push nguyent4/udagram-frontend:v1
             docker push nguyent4/udagram-reverseproxy:v1
 
 workflows:
