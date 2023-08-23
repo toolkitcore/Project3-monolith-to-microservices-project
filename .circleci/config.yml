@@ -31,7 +31,7 @@ jobs:
             docker tag udagram-frontend nguyent4/udagram-frontend:v1
 
             docker build -t udagram-reverseproxy ./udagram-reverseproxy
-            docker tag udagram-reverseproxy nguyent4/reverseproxy:v1
+            docker tag udagram-reverseproxy nguyent4/udagram-reverseproxy:v1
 
             echo "-------- All images succesfully built----------"
 
