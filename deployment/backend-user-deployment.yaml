@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: api-user
-          image: nguyent4/udagram-api-user:v1
-          env: 
+          image: truongnhon/udagram-api-user:v1
+          env:
             - name: POSTGRES_USERNAME
               valueFrom:
                 configMapKeyRef:
@@ -62,7 +62,7 @@ spec:
                   name: env-config
                   key: URL
           volumeMounts:
-            - name: nguyent4-secret
+            - name: truongnhon-secret
               mountPath: "/root/.aws/"
               readOnly: true
           ports:
@@ -73,9 +73,9 @@ spec:
             requests:
               cpu: 200m
       volumes:
-        - name: nguyent4-secret
+        - name: truongnhon-secret
           secret:
-            secretName: nguyent4-secret
+            secretName: truongnhon-secret
 
 ---
 apiVersion: v1

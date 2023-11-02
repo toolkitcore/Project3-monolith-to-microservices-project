@@ -3,11 +3,11 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  POSTGRES_USERNAME: nguyent4
-  POSTGRES_PASSWORD: nguyent4
-  POSTGRES_HOST: my-db.c2bdjoqhzlwx.us-east-1.rds.amazonaws.com
-  POSTGRES_DB: nguyent4
-  AWS_BUCKET: test-nguyent4-dev
+  POSTGRES_USERNAME: truongnhon
+  POSTGRES_PASSWORD: mypassword
+  POSTGRES_HOST: database-1.cu89b3f2cbki.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: postgres
+  AWS_BUCKET: arn:aws:s3:::awsbucketproject3
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing

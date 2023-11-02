@@ -13,15 +13,15 @@ spec:
         run: reverseproxy
     spec:
       containers:
-      - name: reverseproxy
-        image: nguyent4/reverseproxy:v1
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            cpu: 1000m
-          requests:
-            cpu: 500m
+        - name: reverseproxy
+          image: truongnhon/reverseproxy:v1
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 1000m
+            requests:
+              cpu: 500m
 
 ---
 apiVersion: v1
@@ -32,8 +32,8 @@ metadata:
   name: reverseproxy
 spec:
   ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 8080
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
   selector:
     service: reverseproxy
